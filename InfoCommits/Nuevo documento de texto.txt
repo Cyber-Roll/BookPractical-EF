@@ -1,0 +1,15 @@
+Refactor and enhance model and project structure
+
+- Removed `ConfigurationBuilderSingleton` from `EFCore_Activity0302` namespace, indicating a refactor or relocation.
+- Added `InventoryHelpers` project reference in `EFCore_Activity0401.csproj` to utilize new functionalities.
+- Utilized `InventoryHelpers` namespace in `Program.cs` for enhanced functionality.
+- Enhanced item existence check in `Program.cs` with lowercase transformation and database retrieval logic.
+- Included `InventoryHelpers` project in `EFCore_Activity0402.sln` and configured it for different environments.
+- Introduced `System` namespace in `InventoryDbContextModelSnapshot.cs` for system type support.
+- Expanded `Item` model in `InventoryDbContextModelSnapshot.cs` with new properties for detailed record-keeping.
+- Extended `Item` model to inherit from `FullAuditModel` in `Item.cs` for auditing information.
+- Added `Actualiza_TablaItems` migration for updating `Items` table with new columns.
+- Introduced `Auditing_hierachy_created` migration for adding auditing-related columns to `Items` table.
+- Reintroduced `ConfigurationBuilderSingleton` in `InventoryHelpers` namespace, indicating relocation.
+- Created `InventoryHelpers.csproj` for the new project setup with necessary package references.
+- Introduced `FullAuditModel` and related interfaces for a structured approach to model definition.

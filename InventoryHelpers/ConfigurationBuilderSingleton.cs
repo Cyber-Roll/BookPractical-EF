@@ -1,0 +1,51 @@
+﻿using LibLog;
+using Microsoft.Extensions.Configuration;
+
+namespace InventoryHelpers
+{
+    public sealed class ConfigurationBuilderSingleton
+    {
+
+        private static Log oLog = new Log(@"D:\___Files\VS\BaseDatos\EFCore_Activity-4-1", "EFCore_Activity0402.log");
+        private static ConfigurationBuilderSingleton _instance = null;
+        private static readonly object instanceLock = new object();
+
+        private static IConfigurationRoot _configuration;
+
+        private ConfigurationBuilderSingleton()
+        {
+            oLog.Add("ConfigurationBuilderSingleton()");
+            var builder = new ConfigurationBuilder()
+                                .SetBasePath(Directory.GetCurrentDirectory())
+                                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            _configuration = builder.Build();
+        }
+
+        public static ConfigurationBuilderSingleton Instance
+        {
+
+            get
+            {
+                lock (instanceLock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new ConfigurationBuilderSingleton();
+                    }
+                    return _instance;
+                }
+            }
+        }
+
+        public static IConfigurationRoot ConfigurationRoot
+        {
+            get
+            {
+                if (_configuration == null) { var x = Instance; }
+                return _configuration;
+            }
+        }
+
+    }
+}

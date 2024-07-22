@@ -1,0 +1,24 @@
+22/7/2024
+
+Enhanced logging, auditing, and item management
+
+This commit introduces significant enhancements across the application, focusing on improving logging, 
+auditing, and database management capabilities. Key changes include the addition of `LibConsola.dll` 
+and `LibLog` project references for advanced logging functionalities. The solution and project files
+ have been updated for better organization and standardization, including adjustments to the `.sln` 
+file and project type corrections.
+
+In `Program.cs`, new constants for user IDs and methods for item management (`UpdateItems`, 
+`DeleteAllItems`) have been added, alongside improvements in item listing and initialization details.
+The database context and model have been adjusted to integrate `LibLog` for logging, introduce a new 
+class for path management, and enhance audit trails with automatic setting of audit fields. Migrations
+have been updated to reflect changes in the database schema, particularly for audit fields.
+
+Refactoring efforts include the relocation of `ConfigurationBuilderSingleton` to the `InventoryHelpers` 
+namespace, enhancing project structure and functionality. The `InventoryHelpers` project has been 
+significantly updated, with new project references and the introduction of logging capabilities. 
+Changes to models and migrations support expanded item details and auditing information, ensuring 
+better data tracking and integrity.
+
+Overall, these changes collectively improve the application's robustness in logging, auditing, and 
+item management, while also enhancing code organization and project structure.
