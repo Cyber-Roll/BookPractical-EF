@@ -15,8 +15,15 @@ namespace EFCore_DbLibrary
         private static IConfigurationRoot _configuration;
         private const string _systemUserId = "2fd28110-93d0-427d-9207-d55dbca680fa";
 
-        public DbSet<Item> Items { get; set; }  // adicionó Roll
-                                                //Add a default constructor if scaffolding is needed
+        //***************************************************************
+        //************** TABLAS DEL CONTEXTO ****************************
+        //***************************************************************
+        public DbSet<Item> Items { get; set; }  // adicionó Roll //Add a default constructor if scaffolding is needed
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryDetail> CategoryDetails { get; set; }
+
+
+
         public InventoryDbContext()
         {
             // no es llamado hasta ahora
@@ -66,7 +73,25 @@ namespace EFCore_DbLibrary
             }
         }
 
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Item>()
+            .HasMany(x => x.Players)
+            .WithMany(p => p.Items)
+            .UsingEntity<Dictionary<string, object>>(
+                "ItemPlayers",
+            ip => ip.HasOne<Player>()
+                .WithMany()
+                .HasForeignKey("PlayerId")
+                .HasConstraintName("FK_ItemPlayer_Players_PlayerId")
+                .OnDelete(DeleteBehavior.Cascade),
+            ip => ip.HasOne<Item>()
+                .WithMany()
+                .HasForeignKey("ItemId")
+                .HasConstraintName("FK_PlayerItem_Items_ItemId")
+                .OnDelete(DeleteBehavior.ClientCascade)
+            );
+        }
 
         /*public override int SaveChanges()
         {

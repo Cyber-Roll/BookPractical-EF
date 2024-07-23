@@ -1,0 +1,60 @@
+22/7/2024
+
+SE CREARÁ UNA RELACION 1 a N
+1. Se crea una nueva tabla, denominada Category
+2. Se inserta el DbSet en el contexto InventoryDbContext
+3. Se adiciona los campos para manejar la clave primaria en Item.cs
+        public int? CategoryId { get; set; }
+        public virtual Category Category { get; set; }
+4. Para crear la clave, en category.cs se adiciona:
+	public virtual List<Item> Items { get; set; } = new List<Item>();
+5. Crear la migración para generar estos cambios en la bdd, luego update-database
+
+HASTA AQUI ESCRIBI
+
+Enhanced logging and expanded DB schema
+
+- Introduced modifications to `LibLog.cs` including a new `AddLine` method, constructor updates 
+  for path initialization, and timestamp formatting in the `Add` method.
+- Added Entity Framework Core migrations to create `Categories`, `CategoryDetails`, `Players`, 
+  and their relationships. This includes one-to-one, one-to-many, and many-to-many relationships, 
+  enhancing the database schema to support categorization and player-item associations.
+- Updated Entity Framework Core models (`Category`, `CategoryDetail`, `Player`) with new properties, 
+  data annotations for schema rules, and navigation properties to establish relationships. This 
+  includes string length validations and required fields to ensure data integrity.
+- Modified `DbContext` with new `DbSet` properties and configuration in `OnModelCreating` for 
+  relationship mappings, particularly the many-to-many relationship between `Items` and `Players`.
+- Added documentation in `Activity 5-2.txt` detailing steps for creating a one-to-many relationship 
+  between `Categories` and `Items`.
+- Implemented code adjustments in entity classes to support new relationships, including navigation 
+  properties and lists for many-to-many connections.
+- Generated detailed migration scripts to apply database schema changes, ensuring the creation of 
+  new tables and foreign key constraints for the established relationships.
+
+Activity 5-2 summary
+In this activity, we learned how to build out a one-to-many relationship, a one-to-one
+relationship, and also a one-to-many relationship. Important things to remember are
+• Build out the entities, and then build the relations in the entities
+using virtual objects.
+• If using a one-to-many, create a List of the related objects in the
+“one” table and a direct reference to the “one” object in the “many”
+object entity.
+• Set both Key and Foreign Key attributes on the Id of a table in a oneto-one relationship.
+• Cascading delete can prevent deletions if the entity has a related
+dependency with data.
+• Cascading delete can delete a related data entry if the other part of
+the relationship is deleted rather than leaving an orphaned data row.
+• Naming is done by convention, so use simple Id fields and then
+name the related field EntityId to easily map directly to the correct
+relational fields.
+• In EFCore5 and EFCore6, the many-to-many relationship can be built
+automatically by convention, just by adding a reference on each side
+to a list of the other entity in the many-to-many relationship.
+• Using the OnModelCreating override in the DbContext allows us to
+further define information about relationships. We’ll also see this
+method and the FluentAPI used in the future for constraints, and
+we’ll also use this method with the FluentAPI to create simple seed
+data.
+
+
+
