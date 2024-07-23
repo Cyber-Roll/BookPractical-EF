@@ -16,11 +16,12 @@ namespace EFCore_DbLibrary
         private const string _systemUserId = "2fd28110-93d0-427d-9207-d55dbca680fa";
 
         //***************************************************************
-        //************** TABLAS DEL CONTEXTO ****************************
+        //************ Entidades: TABLAS DEL CONTEXTO *******************
         //***************************************************************
-        public DbSet<Item> Items { get; set; }  // adicionó Roll //Add a default constructor if scaffolding is needed
+        public DbSet<Item> Items { get; set; }  // adicionó Roll 
         public DbSet<Category> Categories { get; set; }
         public DbSet<CategoryDetail> CategoryDetails { get; set; }
+        public DbSet<Genre> Genres { get; set; }
 
 
 

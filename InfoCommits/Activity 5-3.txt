@@ -1,0 +1,26 @@
+23/7/2024
+
+Enhance logging and expand DB schema
+
+- Initialized `Path` in LibLog.cs to avoid nulls.
+- Added `AddLine` method to LibLog for better log readability.
+- Changed log timestamp format to 24-hour clock.
+- Added migrations for `Genres` and `ItemGenres` tables.
+- Introduced `Genre` and `ItemGenre` entities for many-to-many relationships.
+- Updated `InventoryDbContext` and model snapshots for new entities.
+- Applied data annotations for validation and relationship definitions.
+- Added EntityFramework package references for EF Core functionality.
+- Standardized genre name length with `MAX_GENRENAME_LENGTH` constant.
+- Renamed `ItemGenre` table to `ItemGenres` for naming consistency.
+- Created unique non-clustered index on `ItemGenres` to ensure data integrity.
+
+
+Tomadas del libro: Important takeaways
+After working through this chapter, the things you should be in command of are
+• Limiting the length of fields
+• Setting constraints on the values of the fields
+• Setting default values on fields
+• Creating one-to-one, one-to-many, and many-to-many relationships
+• Redefining table names and relationships in the FluentAPI and
+through the use of Data Annotations
+• Adding unique indexes to a table

@@ -32,8 +32,11 @@ namespace InventoryModels
         public int? CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
-        // roll: R n-n
+        // roll: R n-n (Actividad 5-2)
         public virtual List<Player> Players { get; set; } = new List<Player>();
+
+        // Roll: R n-n (Activity 5-3)
+        public virtual List<ItemGenre> ItemGenres { get; set; } = new List<ItemGenre>();
 
     }
 }

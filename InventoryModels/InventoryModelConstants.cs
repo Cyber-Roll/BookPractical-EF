@@ -17,5 +17,7 @@
 
         public const int MAX_PLAYERNAME_LENGTH = 50;
         public const int MAX_PLAYERDESCRIPTION_LENGTH = 500;
+
+        public const int MAX_GENRENAME_LENGTH = 50;
     }
 }
