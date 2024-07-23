@@ -1,0 +1,22 @@
+Enhanced logging and DB schema updates
+
+- Initialized a private `Path` variable in `LibLog.cs` and modified the `Log` class constructor to accept new parameters.
+- Added `AddLine` method and updated timestamp format in `Log` class.
+- Introduced new EF Core migrations to adjust column sizes/types in `Items` table, set min/max values on `Quantity`, and enable soft delete functionality.
+- Created `InventoryModelsConstants.cs` for defining constants related to inventory models.
+- Updated `Program.cs` to shorten the display of certain item details.
+- Updated `InventoryDbContextModelSnapshot.cs` and model classes to reflect DB schema changes and enforce new constraints.
+
+Activity 5-1 summary
+This activity gave you a good look at how you can use annotations and migrations to
+modify your database schema. Some of the things you learned were
+
+• You can set the key fields for the table with the [Key] annotation.
+• Making fields required is possible with the [Required] annotation.
+• Use [StringLength] to set the maximum and minimum length of a string.
+• Use [DefaultValue(<value>)] to set the default value of a field.
+• Some of the annotations (attributes) only apply to the model state.
+  In these cases, we can create a script to run T-SQL statements. This
+  was highlighted with the Range attribute on the Quantity and Price
+  properties.
+• Use [Range] to set the minimum and maximum values of a field in the model state.

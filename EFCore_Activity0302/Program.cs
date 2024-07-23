@@ -61,14 +61,20 @@ namespace EFCore_Activity0302
                 var items = db.Items.OrderBy(x => x.Name).ToList();
                 foreach (var i in items)
                 {
+                    // acortando los campos
+                    var descrip = i.Description.Length > 20 ? i.Description.Substring(0, 20) : i.Description;
+                    var notas = i.Notes.Length > 15 ? i.Notes.Substring(0, 15) : i.Notes;
+                    var userid = i.CreatedByUserId.Length > 15 ? i.CreatedByUserId.Substring(0, 15) : i.CreatedByUserId;
+
+                    //print
                     Console.WriteLine($"" +
                         $"{i.Id,-3}|" +
-                        $"{i.Name,-20}|" +
-                        $"{i.Description,-33}|" +
-                        $"{i.Notes,-20}| " +
+                        $"{i.Name,-16}|" +
+                        $"{descrip,-20}|" +
+                        $"{notas,-15}| " +
                         $"{i.Quantity,-3}|" +
                         $"{i.CurrentOrFinalPrice,-6}|" +
-                        $"{i.CreatedByUserId,-23}|");
+                        $"{userid,-15}|");
                 }
                 //items.ForEach(x => Console.WriteLine($"New Item: {x.Name}"));
             }
